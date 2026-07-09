@@ -614,8 +614,7 @@ function karanlikModToggle() {
   const simdiki = veriAl('karanlikMod', false);
   veriKaydet('karanlikMod', !simdiki);
   document.body.classList.toggle('karanlik', !simdiki);
-}join('');
-
+}
 
 // ============================================
 // KONULAR

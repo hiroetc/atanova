@@ -1,7 +1,7 @@
 // ============================================
 // ANTHROPİC API BAĞLANTISI
 // ============================================
-const API_KEY = 
+const API_KEY = 'sk-ant-...';
 const MODEL = 'claude-sonnet-4-6';
 
 async function claudeIste(prompt, sistem = '') {
