@@ -3,73 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atanova — KPSS Hazırlık</title>
+  <title>Atanova — KPSS Hazırlık</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
-<!-- YOL HARİTASI -->
-<div id="page-yolharitasi" class="page">
-  <div class="page-header">
-    <h2>Çalışma Yol Haritası</h2>
-    <div class="yh-genel-ilerleme">
-      <span id="yh-yuzde">%0</span> tamamlandı
-      <div class="progress-bar" style="width:200px;margin-left:10px">
-        <div class="progress-fill" id="yh-genel-fill" style="width:0%"></div>
-      </div>
-    </div>
-  </div>
-  <div id="yolharitasi-icerik"></div>
-</div>
-
 <body>
 
-  <div class="nav-logo">
-  <i class="ti ti-rocket"></i>
-  <span>Atanova</span>
-</div>
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="ti ti-rocket"></i>
+      <span>Atanova</span>
+    </div>
     <div class="nav-links">
       <button class="nav-btn active" onclick="showPage('anasayfa')"><i class="ti ti-home"></i><span>Ana Sayfa</span></button>
       <button class="nav-btn" onclick="showPage('konular')"><i class="ti ti-book-2"></i><span>Konular</span></button>
       <button class="nav-btn" onclick="showPage('kartlar')"><i class="ti ti-cards"></i><span>Kartlar</span></button>
       <button class="nav-btn" onclick="showPage('sorular')"><i class="ti ti-help-circle"></i><span>Sorular</span></button>
-      <button class="nav-btn" onclick="showPage('pratik')"><i class="ti ti-writing"></i><span>Pratik Test</span></button>
-      <button class="nav-btn" onclick="showPage('net')"><i class="ti ti-calculator"></i><span>Net Hesap</span></button>
+      <button class="nav-btn" onclick="showPage('pratik')"><i class="ti ti-writing"></i><span>Pratik</span></button>
+      <button class="nav-btn" onclick="showPage('net')"><i class="ti ti-calculator"></i><span>Net</span></button>
       <button class="nav-btn" onclick="showPage('sozluk')"><i class="ti ti-abc"></i><span>Sözlük</span></button>
       <button class="nav-btn" onclick="showPage('pomodoro')"><i class="ti ti-clock"></i><span>Pomodoro</span></button>
       <button class="nav-btn" onclick="showPage('istatistik')"><i class="ti ti-chart-bar"></i><span>İstatistik</span></button>
       <button class="nav-btn" onclick="showPage('yolharitasi')"><i class="ti ti-map-2"></i><span>Yol Haritası</span></button>
-   <button class="nav-btn" onclick="showPage('yolharitasi')"><i class="ti ti-map-2"></i><span>Yol Haritası</span></button> 
     </div>
   </nav>
 
   <!-- ANA SAYFA -->
   <div id="page-anasayfa" class="page active">
-<!-- HERO -->
-  <div class="hero">
-    <h1>Atanova ile KPSS'ye Hazır mısın? 🚀</h1>
-    <p>Konu anlatımı, bilgi kartları ve AI destekli sorularla sınava en iyi şekilde hazırlan.</p>
-  </div>
-    <!-- SINAV SEÇİCİ -->
     <div class="sinav-secici">
       <p class="sinav-secici-label">Hangi sınava hazırlanıyorsun?</p>
       <div class="sinav-btns">
-        <button class="sinav-btn active" onclick="selectSinav('lisans', this)">
-          <i class="ti ti-certificate"></i> KPSS Lisans
-        </button>
-        <button class="sinav-btn" onclick="selectSinav('onlisans', this)">
-          <i class="ti ti-certificate-2"></i> KPSS Önlisans
-        </button>
-        <button class="sinav-btn" onclick="selectSinav('ortaogretim', this)">
-          <i class="ti ti-school"></i> KPSS Ortaöğretim
-        </button>
+        <button class="sinav-btn active" onclick="selectSinav('lisans', this)"><i class="ti ti-certificate"></i> KPSS Lisans</button>
+        <button class="sinav-btn" onclick="selectSinav('onlisans', this)"><i class="ti ti-certificate-2"></i> KPSS Önlisans</button>
+        <button class="sinav-btn" onclick="selectSinav('ortaogretim', this)"><i class="ti ti-school"></i> KPSS Ortaöğretim</button>
       </div>
     </div>
 
-    <!-- GERİ SAYIM -->
     <div class="geri-sayim-box">
       <div class="gs-baslik">
         <i class="ti ti-alarm"></i>
-        <span id="gs-sinav-adi">KPSS Lisans 2025</span>
+        <span id="gs-sinav-adi">KPSS Lisans 2026</span>
         <span class="gs-tarih" id="gs-tarih-text"></span>
       </div>
       <div class="gs-sayaclar">
@@ -81,10 +54,9 @@
         <div class="gs-ayrac">:</div>
         <div class="gs-birim"><span id="gs-saniye">00</span><small>Saniye</small></div>
       </div>
-      <div class="gs-hedef" id="gs-hedef-text"></div>
+      <div class="gs-hedef" id="gs-hedef-text">Yükleniyor...</div>
     </div>
 
-    <!-- STREAK & STATS -->
     <div class="stats-row">
       <div class="stat-card streak">
         <i class="ti ti-flame"></i>
@@ -109,54 +81,49 @@
       </div>
     </div>
 
+    <!-- HIZLI ERİŞİM -->
+    <div class="hizli-erisim">
+      <h3>Hızlı Erişim</h3>
+      <div class="he-grid">
+        <button class="he-btn" onclick="showPage('konular')"><i class="ti ti-book-2"></i> Konu Çalış</button>
+        <button class="he-btn" onclick="showPage('pratik')"><i class="ti ti-writing"></i> Pratik Test</button>
+        <button class="he-btn" onclick="showPage('kartlar')"><i class="ti ti-cards"></i> Kart Çevir</button>
+        <button class="he-btn" onclick="showPage('pomodoro')"><i class="ti ti-clock"></i> Pomodoro</button>
+        <button class="he-btn" onclick="showPage('net')"><i class="ti ti-calculator"></i> Net Hesapla</button>
+        <button class="he-btn" onclick="showPage('sozluk')"><i class="ti ti-abc"></i> Sözlük</button>
+        <button class="he-btn" onclick="showPage('yolharitasi')"><i class="ti ti-map-2"></i> Yol Haritası</button>
+        <button class="he-btn" onclick="showPage('sorular')"><i class="ti ti-help-circle"></i> Sorular</button>
+        <button class="he-btn kilitli" id="btn-karanlik" onclick="karanlikModToggle()"><i class="ti ti-moon"></i> Karanlık Mod 🔒</button>
+      </div>
+    </div>
+
     <!-- ROZETLER -->
     <div class="rozet-section">
-      <h3>Rozetlerim</h3>
-      <div class="rozet-grid" id="rozet-grid"></div>
-    </div>
-
-    <!-- HIZLI ERİŞİM -->
-<div class="hizli-erisim">
-  <h3>Hızlı Erişim</h3>
-  <div class="he-grid">
-    <button class="he-btn" onclick="showPage('konular')"><i class="ti ti-book-2"></i> Konu Çalış</button>
-    <button class="he-btn" onclick="showPage('pratik')"><i class="ti ti-writing"></i> Pratik Test</button>
-    <button class="he-btn" onclick="showPage('kartlar')"><i class="ti ti-cards"></i> Kart Çevir</button>
-    <button class="he-btn" onclick="showPage('pomodoro')"><i class="ti ti-clock"></i> Pomodoro</button>
-    <button class="he-btn" onclick="showPage('net')"><i class="ti ti-calculator"></i> Net Hesapla</button>
-    <button class="he-btn" onclick="showPage('sozluk')"><i class="ti ti-abc"></i> Sözlük</button>
-    <button class="he-btn" onclick="showPage('yolharitasi')"><i class="ti ti-map-2"></i> Yol Haritası</button>
-    <button class="he-btn" onclick="showPage('sorular')"><i class="ti ti-help-circle"></i> Sorular</button>
-    <button class="he-btn kilitli" id="btn-karanlik" onclick="karanlikModToggle()"><i class="ti ti-moon"></i> Karanlık Mod 🔒</button>
-  </div>
-</div>
-
-<!-- ROZETLER -->
-<div class="rozet-section">
-  <div class="rozet-baslik-row">
-    <h3>Rozetlerim</h3>
-    <span class="rozet-sayac" id="rozet-sayac">0/19</span>
-  </div>
-  <div class="rozet-kategoriler">
-    <div class="rozet-kategori">
-      <div class="rozet-kategori-baslik">🥉 Bronz</div>
-      <div class="rozet-grid" id="rozet-grid-bronz"></div>
-    </div>
-    <div class="rozet-kategori">
-      <div class="rozet-kategori-baslik">🥈 Gümüş</div>
-      <div class="rozet-grid" id="rozet-grid-gumus"></div>
-    </div>
-    <div class="rozet-kategori">
-      <div class="rozet-kategori-baslik">🥇 Altın</div>
-      <div class="rozet-grid" id="rozet-grid-altin"></div>
-    </div>
-    <div class="rozet-kategori">
-      <div class="rozet-kategori-baslik">💎 Elmas</div>
-      <div class="rozet-grid" id="rozet-grid-elmas"></div>
+      <div class="rozet-baslik-row">
+        <h3>Rozetlerim</h3>
+        <span class="rozet-sayac" id="rozet-sayac">0/19</span>
+      </div>
+      <div class="rozet-kategoriler">
+        <div class="rozet-kategori">
+          <div class="rozet-kategori-baslik">🥉 Bronz</div>
+          <div class="rozet-grid" id="rozet-grid-bronz"></div>
+        </div>
+        <div class="rozet-kategori">
+          <div class="rozet-kategori-baslik">🥈 Gümüş</div>
+          <div class="rozet-grid" id="rozet-grid-gumus"></div>
+        </div>
+        <div class="rozet-kategori">
+          <div class="rozet-kategori-baslik">🥇 Altın</div>
+          <div class="rozet-grid" id="rozet-grid-altin"></div>
+        </div>
+        <div class="rozet-kategori">
+          <div class="rozet-kategori-baslik">💎 Elmas</div>
+          <div class="rozet-grid" id="rozet-grid-elmas"></div>
+        </div>
+      </div>
+      <div class="kilit-durum" id="kilit-durum"></div>
     </div>
   </div>
-  <div class="kilit-durum" id="kilit-durum"></div>
-</div>
 
   <!-- KONULAR -->
   <div id="page-konular" class="page">
@@ -189,7 +156,7 @@
       <div class="flashcard" id="flashcard" onclick="flipCard()">
         <div class="flashcard-inner">
           <div class="flashcard-front">
-            <p id="kart-soru">Sol taraftan bir konu seç</p>
+            <p id="kart-soru">Yukarıdan bir konu seç</p>
             <span class="flip-hint"><i class="ti ti-hand-click"></i> Tıkla → cevabı gör</span>
           </div>
           <div class="flashcard-back">
@@ -216,6 +183,7 @@
         <button class="filter-btn" onclick="soruKonuSec('turkce', this)">Türkçe</button>
         <button class="filter-btn" onclick="soruKonuSec('tarih', this)">Tarih</button>
         <button class="filter-btn" onclick="soruKonuSec('anayasa', this)">Anayasa</button>
+        <button class="filter-btn" onclick="soruKonuSec('cografya', this)">Coğrafya</button>
       </div>
     </div>
     <button class="ai-btn" style="margin-bottom:1.5rem" onclick="aiSoruUret()">
@@ -243,6 +211,7 @@
             <option value="turkce">Türkçe</option>
             <option value="tarih">Tarih</option>
             <option value="anayasa">Anayasa</option>
+            <option value="cografya">Coğrafya</option>
           </select>
         </div>
         <div class="ayar-row">
@@ -280,24 +249,12 @@
       <button class="filter-btn" onclick="netSinavSec('ortaogretim', this)">Ortaöğretim</button>
     </div>
     <div class="net-grid" id="net-grid"></div>
-    <div class="net-sonuc-box" id="net-sonuc-box">
+    <div class="net-sonuc-box">
       <div class="net-sonuc-row">
-        <div class="net-sonuc-kart">
-          <span class="ns-label">Genel Yetenek Neti</span>
-          <span class="ns-deger" id="ns-gy">0.00</span>
-        </div>
-        <div class="net-sonuc-kart">
-          <span class="ns-label">Genel Kültür Neti</span>
-          <span class="ns-deger" id="ns-gk">0.00</span>
-        </div>
-        <div class="net-sonuc-kart accent">
-          <span class="ns-label">Toplam Net</span>
-          <span class="ns-deger" id="ns-toplam">0.00</span>
-        </div>
-        <div class="net-sonuc-kart">
-          <span class="ns-label">Tahmini Puan</span>
-          <span class="ns-deger" id="ns-puan">0.00</span>
-        </div>
+        <div class="net-sonuc-kart"><span class="ns-label">GY Neti</span><span class="ns-deger" id="ns-gy">0.00</span></div>
+        <div class="net-sonuc-kart"><span class="ns-label">GK Neti</span><span class="ns-deger" id="ns-gk">0.00</span></div>
+        <div class="net-sonuc-kart accent"><span class="ns-label">Toplam Net</span><span class="ns-deger" id="ns-toplam">0.00</span></div>
+        <div class="net-sonuc-kart"><span class="ns-label">Tahmini Puan</span><span class="ns-deger" id="ns-puan">0.00</span></div>
       </div>
       <div class="puan-bar-wrap">
         <div class="puan-bar">
@@ -306,11 +263,8 @@
         </div>
         <div class="puan-bilgi" id="puan-bilgi">Doğru/yanlış girerek puan tahmini yap</div>
       </div>
-      <div style="margin-top:1rem">
-        <button class="ai-btn" onclick="netKaydet()"><i class="ti ti-device-floppy"></i> Bu Sonucu Kaydet</button>
-      </div>
+      <button class="ai-btn" style="margin-top:1rem" onclick="netKaydet()"><i class="ti ti-device-floppy"></i> Bu Sonucu Kaydet</button>
     </div>
-
     <div class="net-gecmis" id="net-gecmis"></div>
   </div>
 
@@ -348,7 +302,7 @@
             transform="rotate(-90 100 100)" id="pomo-progress-circle"/>
         </svg>
         <div class="pomo-zaman" id="pomo-zaman">25:00</div>
-        <div class="pomo-durum" id="pomo-durum">Çalışma zamanı</div>
+        <div class="pomo-durum" id="pomo-durum">Çalışma zamanı 📚</div>
       </div>
       <div class="pomo-buttons">
         <button class="pomo-btn" onclick="pomoSifirla()"><i class="ti ti-refresh"></i></button>
@@ -375,23 +329,25 @@
       </div>
     </div>
   </div>
-<!-- YOL HARİTASI -->
-<div id="page-yolharitasi" class="page">
-  <div class="page-header">
-    <h2>📍 Çalışma Yol Haritası</h2>
-    <div class="yh-genel-ilerleme">
-      <span id="yh-yuzde">%0</span> tamamlandı
-      <div class="progress-bar" style="width:200px;margin-left:10px">
-        <div class="progress-fill" id="yh-genel-fill" style="width:0%"></div>
-      </div>
-    </div>
-  </div>
-  <div id="yolharitasi-icerik"></div>
-</div>
+
   <!-- İSTATİSTİK -->
   <div id="page-istatistik" class="page">
     <div class="page-header"><h2>İstatistiklerim</h2></div>
     <div id="istatistik-icerik"></div>
+  </div>
+
+  <!-- YOL HARİTASI -->
+  <div id="page-yolharitasi" class="page">
+    <div class="page-header">
+      <h2>Çalışma Yol Haritası</h2>
+      <div class="yh-genel-ilerleme">
+        <span id="yh-yuzde">%0</span> tamamlandı
+        <div class="progress-bar" style="width:200px;margin-left:10px">
+          <div class="progress-fill" id="yh-genel-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+    <div id="yolharitasi-icerik"></div>
   </div>
 
   <script src="js/app.js"></script>
