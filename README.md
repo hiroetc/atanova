@@ -30,4 +30,3 @@ KPSS'ye hazırlananlar için AI destekli, kapsamlı çalışma platformu.
 ## 🛠️ Teknoloji
 - Saf HTML, CSS, JavaScript
 - Anthropic Claude API (AI içerik)
-- GitHub Pages (yayınlama)

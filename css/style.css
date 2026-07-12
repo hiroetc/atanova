@@ -457,4 +457,40 @@ body.karanlik .geri-sayim-box { background: linear-gradient(135deg, #0f0f1a, #1e
   .he-grid { grid-template-columns: repeat(2, 1fr); }
   .sonuc-grid { grid-template-columns: repeat(3, 1fr); }
   .net-sonuc-row { grid-template-columns: repeat(2, 1fr); }
+}/* TAŞMA DÜZELTMELERİ */
+.net-grid {
+  overflow-x: auto;
+}
+.net-row {
+  min-width: 0;
+}
+.net-row label {
+  font-size: 11px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.net-input {
+  min-width: 0;
+  width: 100%;
+}
+.pomodoro-box {
+  overflow-x: hidden;
+  width: 100%;
+}
+.pomo-circle {
+  overflow: hidden;
+}
+@media (max-width: 400px) {
+  .net-row {
+    grid-template-columns: 1fr 48px 48px 48px;
+    gap: 3px;
+  }
+  .net-baslik-row {
+    grid-template-columns: 1fr 48px 48px 48px;
+    gap: 3px;
+  }
+  .gs-birim span { font-size: 20px; }
+  .gs-birim { min-width: 38px; padding: 6px 4px; }
 }
