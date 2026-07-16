@@ -490,7 +490,7 @@ function istatistikGuncelle(key, miktar = 1) {
   istatistik.sonCalisma = new Date().toDateString();
   streakGuncelle();
   veriKaydet('istatistik', istatistik);
-  updateStats();
+  renderIstatistik();
 }
 
 function streakGuncelle() {
@@ -515,7 +515,7 @@ function showPage(id) {
   if (id === 'net') renderNetGrid();
   if (id === 'istatistik') renderIstatistik();
   if (id === 'yolharitasi') renderYolHaritasi();
-  if (id === 'anasayfa') { updateStats(); renderRozetler(); }
+  if (id === 'anasayfa') { renderIstatistik(); renderRozetler(); }
 }
 
 // ============================================
@@ -1207,6 +1207,6 @@ document.querySelectorAll('.sinav-btn').forEach((btn, i) => {
   else btn.classList.remove('active');
 });
 geriSayimBaslat();
-updateStats();
+renderIstatistik();
 renderRozetler();
 renderNetGecmis();
