@@ -1,7 +1,33 @@
-const API_KEY = 'BURAYA_API_ANAHTARINI_YAZ';
-const MODEL = 'claude-sonnet-4-6';
+const API_KEY_STORAGE = 'atanova_api_key';
+const MODEL = 'claude-sonnet-5';
+
+function getApiKey() {
+  return localStorage.getItem(API_KEY_STORAGE) || '';
+}
+
+function apiAnahtariIste() {
+  const mevcut = getApiKey();
+  const girilen = window.prompt(
+    'AI özelliklerini kullanmak için Anthropic API anahtarını gir.\n\n' +
+    'Anahtarın SADECE senin tarayıcında (localStorage) saklanır, hiçbir sunucuya veya\n' +
+    'GitHub deposuna gönderilmez. Anahtarı https://console.anthropic.com adresinden alabilirsin.',
+    mevcut
+  );
+  if (girilen === null) return false;
+  const temiz = girilen.trim();
+  if (!temiz) { localStorage.removeItem(API_KEY_STORAGE); }
+  else { localStorage.setItem(API_KEY_STORAGE, temiz); }
+  apiUyariGuncelle();
+  return !!temiz;
+}
+window.apiAnahtariIste = apiAnahtariIste;
 
 async function claudeIste(prompt, sistem = '') {
+  const key = getApiKey();
+  if (!key) {
+    apiAnahtariIste();
+    throw new Error('AI özelliklerini kullanmak için önce API anahtarını gir.');
+  }
   try {
     const body = {
       model: MODEL,
@@ -13,7 +39,7 @@ async function claudeIste(prompt, sistem = '') {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': API_KEY,
+        'x-api-key': key,
         'anthropic-version': '2023-06-01',
         'anthropic-dangerous-direct-browser-access': 'true',
       },
@@ -47,7 +73,7 @@ window.aiSoruOlustur = async function(konu, adet) {
   const prompt = `"${konu}" konusundan ${adet} KPSS sorusu üret. Sadece JSON:
 [{"soru":"...","secenekler":["A) ...","B) ...","C) ...","D) ..."],"dogru":0,"aciklama":"..."}]`;
   const metin = await claudeIste(prompt, sistem);
-  let temiz = metin.trim().replace(/\`\`\`json|\`\`\`/g, '').trim();
+  let temiz = metin.trim().replace(/```json|```/g, '').trim();
   const b = temiz.indexOf('['), e = temiz.lastIndexOf(']');
   if (b !== -1 && e !== -1) temiz = temiz.substring(b, e + 1);
   try {
@@ -60,13 +86,16 @@ window.aiSoruOlustur = async function(konu, adet) {
   } catch (e) { console.error('JSON parse hatası:', e); throw new Error('Tekrar dene.'); }
 };
 
-window.addEventListener('load', () => {
-  if (API_KEY === 'BURAYA_API_ANAHTARINI_YAZ') {
-    const u = document.createElement('div');
-    u.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#fef2f2;border:1px solid #dc2626;color:#dc2626;padding:12px 16px;border-radius:8px;font-size:13px;z-index:9999;max-width:280px;cursor:pointer';
-    u.innerHTML = '⚠️ <strong>API anahtarı eksik!</strong><br><small>js/ai.js dosyasına ekle.</small><br><a href="https://console.anthropic.com" target="_blank" style="color:#dc2626">→ console.anthropic.com</a>';
-    u.onclick = () => u.remove();
-    document.body.appendChild(u);
-    setTimeout(() => u.remove(), 8000);
-  }
-});
+function apiUyariGuncelle() {
+  const eski = document.getElementById('api-uyari-banner');
+  if (eski) eski.remove();
+  if (getApiKey()) return;
+  const u = document.createElement('div');
+  u.id = 'api-uyari-banner';
+  u.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#fdf6e9;border:1px solid #96570a;color:#96570a;padding:12px 16px;border-radius:8px;font-size:13px;z-index:9999;max-width:280px;cursor:pointer;font-family:var(--font-sans, sans-serif);box-shadow:0 2px 10px rgba(0,0,0,0.08)';
+  u.innerHTML = '⚠️ <strong>AI özellikleri kapalı</strong><br><small>Kendi API anahtarını girmek için tıkla</small>';
+  u.onclick = () => apiAnahtariIste();
+  document.body.appendChild(u);
+}
+
+window.addEventListener('load', apiUyariGuncelle);

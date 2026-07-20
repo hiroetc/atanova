@@ -66,9 +66,10 @@ h1, h2, h3, .page > h2, .nav-logo span {
   flex-shrink: 0;
   margin-right: 8px;
 }
-.nav-logo i {
-  font-size: 20px;
-  color: var(--accent);
+.nav-logo img.nav-logo-img {
+  height: 26px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
